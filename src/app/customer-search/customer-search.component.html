@@ -1,0 +1,39 @@
+<div class="">
+  <form name="searchForm" #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="row">
+      <div class="form-group col-sm">
+        <label>Filiale</label>
+        <br />
+        <select ngModel class="form-control" name="branch" id="branch">
+          <option value=""></option>
+          <option *ngFor="let branch of branches" [ngValue]="branch">
+            {{ branch.id + " - " + branch.nome }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group col-sm">
+        <label>NAG</label>
+        <br />
+        <input ngModel class="form-control" type="text" name="nag" id="nag" />
+      </div>
+
+      <div class="form-group col-sm">
+        <label>Nome</label>
+        <br />
+        <input ngModel class="form-control" name="name" id="name" />
+      </div>
+
+      <div class="form-group col-sm">
+        <label>Data di Nascita</label>
+        <br />
+        <input ngModel class="form-control" name="birthDate" id="birthDate" />
+      </div>
+
+      <div class="form-group col-sm">
+        <br />
+        <button>Cerca</button>
+      </div>
+    </div>
+  </form>
+</div>

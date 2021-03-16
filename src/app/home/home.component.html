@@ -1,0 +1,29 @@
+<div>
+  <app-navbar></app-navbar>
+</div>
+
+<div id="search-form">
+  <app-customer-search
+    (formData)="getFormData($event)"
+    [branches-data]="branches"
+  ></app-customer-search>
+</div>
+
+<div [hidden]="!showTable" id="customer-table">
+  <app-customer-table
+    [customers-data]="customersPerPage"
+    (customer-details)="getCustomerDetails($event)"
+  ></app-customer-table>
+  <nav [hidden]="!showNavigation" id="pagination-nav">
+    <ul class="pagination">
+      <li
+        *ngFor="let page of pages"
+        [ngClass]="page === currentPage ? 'page-item active' : 'page-item'"
+      >
+        <a class="page-link" (click)="handlePageChange(page)">
+          {{ page }}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

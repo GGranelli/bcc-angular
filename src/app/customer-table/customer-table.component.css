@@ -1,0 +1,19 @@
+table {
+  background-color: rgba(235, 242, 246);
+  border: 1px solid rgba(79, 109, 122);
+  width: 100%;
+}
+
+th {
+  background-color: rgba(8, 70, 153);
+  border: 1px solid rgb(0, 2, 3);
+  color: white;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+td {
+  border: 1px solid rgba(79, 109, 122);
+  padding-top: 5px;
+  padding-bottom: 5px;
+}

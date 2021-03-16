@@ -1,0 +1,44 @@
+<div
+  class="d-flex align-items-center justify-content-center"
+  style="height: 600px"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col-4">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Username"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          [(ngModel)]="credentials.username"
+        />
+      </div>
+      <div class="col-4"></div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col-4">
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Password"
+          aria-label="Password"
+          aria-describedby="basic-addon1"
+          [(ngModel)]="credentials.password"
+        />
+      </div>
+      <div class="col-4"></div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col-4 text-center">
+        <button type="button" class="btn btn-outline-primary" (click)="login()">Login</button>
+      </div>
+      <div class="col-4"></div>
+    </div>
+  </div>
+</div>

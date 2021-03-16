@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+      <th
+        *ngFor="let column of columns"
+        className="th-customer-table"
+        key="column.path || column.key"
+      >
+        {{ column.label }}
+      </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let customer of customers">
+      <td *ngFor="let column of columns">
+        {{ this.renderCell(customer, column) }}
+      </td>
+      <td><button (click)="onDetailsClick(customer)">Details</button></td>
+    </tr>
+  </tbody>
+</table>

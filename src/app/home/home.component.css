@@ -1,0 +1,19 @@
+#search-form {
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid rgb(255, 38, 0);
+}
+
+#customer-table {
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid rgb(255, 38, 0);
+}
+
+#pagination-nav {
+  margin-top: 20px;
+}
+
+.page-item.active {
+  background-color: rgba(8, 70, 153);
+}
