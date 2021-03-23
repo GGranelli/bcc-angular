@@ -1,23 +1,51 @@
 <div class="modal-header">
   <h4 class="modal-title">{{ customer.nome }}</h4>
-  <button
-    type="button"
-    class="close"
-    aria-label="Close"
-    (click)="activeModal.dismiss('Cross click')"
-  >
-    <span aria-hidden="true">&times;</span>
-  </button>
 </div>
 <div class="modal-body">
-  <p>One fine body&hellip;</p>
+  <app-table-modal
+    [customer-modal]="customer"
+    [items]="items"
+    [disable-checkboxes]="disableCheckboxes"
+    [get-toggle-checkboxes]="handleCheckbox"
+    [modalSuccess]="modalSuccess"
+  ></app-table-modal>
 </div>
 <div class="modal-footer">
-  <button
-    type="button"
-    class="btn btn-secondary"
-    (click)="activeModal.close('Close click')"
-  >
-    Close
-  </button>
+  <div *ngIf="confirmed && !success" style="float: left">
+    Sei sicuro di voler confermare l'anagrafica?
+  </div>
+  <div>
+    <button
+      *ngIf="!customer.confermato && !confirmed && !modalSuccess"
+      type="button"
+      class="btn btn-primary"
+      (click)="showConfirmationButton()"
+    >
+      Conferma
+    </button>
+    <button
+      *ngIf="confirmed"
+      type="button"
+      class="btn btn-danger"
+      (click)="confirmation()"
+    >
+      Conferma
+    </button>
+    <button
+      *ngIf="!confirmed"
+      type="button"
+      class="btn btn-secondary"
+      (click)="activeModal.close('Close click'); cleanItems()"
+    >
+      Close
+    </button>
+    <button
+      *ngIf="confirmed"
+      type="button"
+      class="btn btn-secondary"
+      (click)="changeConfirmedStatus(false); disableCheckboxes = false"
+    >
+      Annulla
+    </button>
+  </div>
 </div>

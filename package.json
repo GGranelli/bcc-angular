@@ -29,7 +29,7 @@
     "lodash": "^4.17.21",
     "popper.js": "^1.16.1",
     "rxjs": "~6.3.3",
-    "tslib": "^1.9.0",
+    "tslib": "^1.14.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
@@ -51,6 +51,6 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "^3.2.4"
+    "typescript": "3.1.6"
   }
 }

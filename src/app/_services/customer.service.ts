@@ -20,7 +20,12 @@ export class CustomerService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  getCustomers(branch, nag, customerName, birthDate) {
+  getCustomers(
+    branch: number,
+    nag: string,
+    customerName: string,
+    birthDate: string
+  ) {
     let url =
       this.url +
       "/api/v1/customer-search" +
@@ -37,6 +42,18 @@ export class CustomerService {
     }
 
     return this.http.get(url, {
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  }
+
+  customerMarkAsEdited(items) {
+    let url = this.url + "/api/v1/customer-mark-as-edited";
+    const data = {};
+    items.map((item) => (data[item.path] = item.flagged));
+
+    return this.http.post(url, data, {
       headers: {
         "Content-type": "application/json",
       },

@@ -13,6 +13,7 @@
   <app-customer-table
     [customers-data]="customersPerPage"
     (customer-details)="getCustomerDetails($event)"
+    [refresh]="refreshTable"
   ></app-customer-table>
   <nav [hidden]="!showNavigation" id="pagination-nav">
     <ul class="pagination">

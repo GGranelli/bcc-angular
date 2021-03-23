@@ -7,7 +7,22 @@
       <a class="nav-link" href="#">Report</a>
     </li>
   </ul>
-  <button type="button" class="btn btn-outline-danger" (click)="logout()">
+
+  <li class="nav-item dropdown">
+    <a
+      class="nav-link dropdown-toggle"
+      href="#"
+      id="navbardrop"
+      data-toggle="dropdown"
+    >
+      Dropdown link
+    </a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" (click)="logout()">Logout</a>
+    </div>
+  </li>
+
+  <!-- <button type="button" class="btn btn-outline-danger" (click)="logout()">
     Logout
-  </button>
+  </button> -->
 </nav>

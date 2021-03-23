@@ -1,4 +1,5 @@
 import { FormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
@@ -16,6 +17,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgbActiveModal, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { ModalComponent } from "./modal/modal.component";
+import { TableModalComponent } from "./table-modal/table-modal.component";
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { ModalComponent } from "./modal/modal.component";
     CustomerSearchComponent,
     CustomerTableComponent,
     ModalComponent,
+    TableModalComponent,
   ],
   entryComponents: [ModalComponent],
   imports: [
@@ -33,6 +36,7 @@ import { ModalComponent } from "./modal/modal.component";
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     NgbModule,
   ],

@@ -4,7 +4,7 @@
       <div class="form-group col-sm">
         <label>Filiale</label>
         <br />
-        <select ngModel class="form-control" name="branch" id="branch">
+        <select required ngModel class="form-control" name="branch" id="branch">
           <option value=""></option>
           <option *ngFor="let branch of branches" [ngValue]="branch">
             {{ branch.id + " - " + branch.nome }}
@@ -15,7 +15,19 @@
       <div class="form-group col-sm">
         <label>NAG</label>
         <br />
-        <input ngModel class="form-control" type="text" name="nag" id="nag" />
+        <input
+          required
+          maxlength="6"
+          pattern="[0-9]"
+          [(ngModel)]="nag"
+          class="form-control"
+          type="text"
+          name="nag"
+          id="nag"
+        />
+        <!-- <div class="alert-danger" *ngIf="nag.errors.required">
+          The field nag is required.
+        </div> -->
       </div>
 
       <div class="form-group col-sm">
@@ -32,7 +44,7 @@
 
       <div class="form-group col-sm">
         <br />
-        <button>Cerca</button>
+        <button [disabled]="f.invalid">Cerca</button>
       </div>
     </div>
   </form>

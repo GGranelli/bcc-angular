@@ -1,6 +1,14 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  SimpleChanges,
+} from "@angular/core";
 import _ from "lodash";
 import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
+import { CustomerInterface } from "../_interfaces/interfaces";
 
 @Component({
   selector: "app-customer-table",
@@ -8,9 +16,9 @@ import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ["./customer-table.component.css"],
 })
 export class CustomerTableComponent implements OnInit {
-  model: NgbDateStruct;
-  @Input("customers-data") customers;
+  @Input("customers-data") customers: CustomerInterface;
   @Output("customer-details") customerDetails = new EventEmitter();
+  @Input() refresh: boolean;
 
   constructor() {}
 
@@ -28,6 +36,11 @@ export class CustomerTableComponent implements OnInit {
   ];
 
   ngOnInit() {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.refresh) this.customers = this.customers;
+    console.log("ONCHANGES -> " + this.customers);
+  }
 
   renderCell = (item, column) => {
     // if (column.content) return column.content(item);
