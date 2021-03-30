@@ -36,7 +36,7 @@ export class CustomerService {
 
     if (customerName !== "") {
       url += "&customerName=" + customerName;
-      if (birthDate !== "") {
+      if (birthDate !== "" && birthDate !== "undefined/undefined/undefined") {
         url += "&birthDate=" + birthDate;
       }
     }
@@ -57,6 +57,7 @@ export class CustomerService {
       headers: {
         "Content-type": "application/json",
       },
+      responseType: "text",
     });
   }
 }

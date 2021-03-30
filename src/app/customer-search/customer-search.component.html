@@ -1,50 +1,113 @@
-<div class="">
-  <form name="searchForm" #f="ngForm" (ngSubmit)="onSubmit(f)">
-    <div class="row">
-      <div class="form-group col-sm">
-        <label>Filiale</label>
-        <br />
-        <select required ngModel class="form-control" name="branch" id="branch">
-          <option value=""></option>
-          <option *ngFor="let branch of branches" [ngValue]="branch">
-            {{ branch.id + " - " + branch.nome }}
-          </option>
-        </select>
+<div class="divForm">
+  <form
+    name="searchForm"
+    class="formSearch"
+    #f="ngForm"
+    (ngSubmit)="onSubmit(f)"
+  >
+    <div class="form-row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Filiale</label>
+          <br />
+          <select
+            required
+            ngModel
+            #branch="ngModel"
+            class="form-control"
+            name="branch"
+            id="branch"
+          >
+            <option value=""></option>
+            <option *ngFor="let branch of branches" [ngValue]="branch">
+              {{ branch.id + " - " + branch.nome }}
+            </option>
+          </select>
+          <div *ngIf="branch.invalid && branch.touched && branch.dirty">
+            <div class="alert-danger" *ngIf="branch.errors.required">
+              The field branch is required.
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="form-group col-sm">
-        <label>NAG</label>
-        <br />
-        <input
-          required
-          maxlength="6"
-          pattern="[0-9]"
-          [(ngModel)]="nag"
-          class="form-control"
-          type="text"
-          name="nag"
-          id="nag"
-        />
-        <!-- <div class="alert-danger" *ngIf="nag.errors.required">
-          The field nag is required.
-        </div> -->
+      <div class="col-md-1">
+        <div class="form-group">
+          <label>NAG</label>
+          <br />
+          <input
+            required
+            maxlength="6"
+            pattern="[0-9]{1,6}"
+            ngModel
+            #nag="ngModel"
+            class="form-control"
+            type="text"
+            id="nag"
+            name="nag"
+          />
+          <div *ngIf="nag.invalid && nag.touched && nag.dirty">
+            <div class="alert-danger" *ngIf="nag.errors.required">
+              The field nag is required.
+            </div>
+            <div class="alert-danger" *ngIf="nag.errors.pattern">
+              The field nag must be a number.
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="form-group col-sm">
-        <label>Nome</label>
-        <br />
-        <input ngModel class="form-control" name="name" id="name" />
+      <div class="col-md-3">
+        <div class="form-group">
+          <label>Nome</label>
+          <br />
+          <input
+            ngModel
+            [disabled]="nag.invalid || nag.value === '' || branch.value === ''"
+            #name="ngModel"
+            class="form-control"
+            name="name"
+            id="name"
+          />
+        </div>
       </div>
 
-      <div class="form-group col-sm">
-        <label>Data di Nascita</label>
-        <br />
-        <input ngModel class="form-control" name="birthDate" id="birthDate" />
+      <div class="col-md-2">
+        <div class="form-group">
+          <label>Data di Nascita</label>
+          <br />
+          <div class="input-group">
+            <input
+              ngbDatepicker
+              #d="ngbDatepicker"
+              [disabled]="name.value === ''"
+              ngModel
+              #birthDate="ngModel"
+              class="form-control"
+              name="birthDate"
+              id="birthDate"
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary calendar"
+                (click)="d.toggle()"
+                type="button"
+              ></button>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="form-group col-sm">
-        <br />
-        <button [disabled]="f.invalid">Cerca</button>
+      <div class="col-md-1">
+        <div class="form-group">
+          <br />
+          <button
+            id="searchButton"
+            [disabled]="nag.invalid || nag.value === '' || branch.value === ''"
+          >
+            Cerca
+          </button>
+        </div>
       </div>
     </div>
   </form>

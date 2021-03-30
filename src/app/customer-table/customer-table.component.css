@@ -1,21 +1,29 @@
 table {
-  background-color: rgba(235, 242, 246);
+  background-color: whitesmoke;
   border: 1px solid rgba(79, 109, 122);
   width: 100%;
 }
 
-th {
-  background-color: rgba(8, 70, 153);
-  border: 1px solid rgb(0, 2, 3);
+table th {
+  background-color: #006699;
+  border: 1px solid teal;
   color: white;
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 5px;
 }
 
+#detailsButton {
+  text-align: center;
+}
+
 td {
-  border: 1px solid rgba(79, 109, 122);
+  border: 1px solid teal;
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 5px;
+}
+
+.img-details {
+  width: 20px;
 }

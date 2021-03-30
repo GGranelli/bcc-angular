@@ -1,5 +1,4 @@
-import { HttpResponse } from "@angular/common/http";
-import { EventEmitter, Output, SimpleChanges } from "@angular/core";
+import { SimpleChanges } from "@angular/core";
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../_services/auth.service";
 import { BranchService } from "../_services/branch.service";
@@ -9,7 +8,6 @@ import _ from "lodash";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ModalComponent } from "../modal/modal.component";
 import { CustomerInterface } from "../_interfaces/interfaces";
-import { CustomerTableComponent } from "../customer-table/customer-table.component";
 
 @Component({
   selector: "app-home",
@@ -33,13 +31,14 @@ export class HomeComponent implements OnInit {
   userPing: string;
   adminPing: string;
   branches: {};
-  customers: {};
+  customers: Array<CustomerInterface>;
   customersPerPage: {};
   lastFormEvent: any;
-  refreshTable: boolean;
+  refreshTable: boolean = false;
   //modal
   customerOnModal: CustomerInterface;
   modalSuccess: boolean = false;
+  customerToRefresh: number;
   //pagination
   totalCount: number;
   showTable: boolean = false;
@@ -49,18 +48,6 @@ export class HomeComponent implements OnInit {
   showNavigation: boolean = true;
 
   ngOnInit() {
-    this.authService.ping().subscribe((response) => {
-      this.ping = response.toString();
-    });
-
-    this.authService.userPing().subscribe((response) => {
-      this.userPing = response.toString();
-    });
-
-    this.authService.adminPing().subscribe((response) => {
-      this.adminPing = response.toString();
-    });
-
     this.branchService.getBranches().subscribe((response) => {
       this.branches = response;
     });
@@ -91,44 +78,52 @@ export class HomeComponent implements OnInit {
 
   //====================================//
 
-  getFormData(event) {
+  getFormData = async (event) => {
     this.lastFormEvent = event;
     let branch = event.branch.id;
     let nag = event.nag;
     let name = event.name;
-    let birthDate = event.birthDate;
+    let birthDate = "";
+    if (
+      event.birthDate !== null &&
+      event.birthDate !== "" &&
+      event.birthDate !== undefined
+    ) {
+      let year = event.birthDate.year;
+      let month = event.birthDate.month;
+      let day = event.birthDate.day;
+      if (month >= 1 && month <= 9) {
+        month = "0" + month;
+      }
+      if (day >= 1 && day <= 9) {
+        day = "0" + day;
+      }
+      birthDate = year + "/" + month + "/" + day;
+    }
 
-    this.customerService
+    await this.customerService
       .getCustomers(branch, nag, name, birthDate)
       .subscribe((response) => {
-        this.customers = response;
+        this.customers = Object.values(response);
         this.getPageData();
         this.showTable = true;
       });
-  }
+  };
 
-  updateCustomersList() {
-    const event = this.lastFormEvent;
-    let branch = event.branch.id;
-    let nag = event.nag;
-    let name = event.name;
-    let birthDate = event.birthDate;
-
-    this.customerService
-      .getCustomers(branch, nag, name, birthDate)
-      .subscribe((response) => {
-        this.customers = response;
-      });
+  updateCustomersList = (customer: CustomerInterface) => {
+    this.customers.find((m) => m.id === customer.id).confermato = true;
 
     this.refreshTable = true;
-  }
+  };
 
   getCustomerDetails(customer: CustomerInterface) {
     //apro la modal
     this.openModal(customer);
   }
 
-  refreshCustomerSearchTable() {}
+  refreshCustomerSearchTable(number) {
+    this.customerToRefresh = number;
+  }
 
   //==========MODAL==========//
 
@@ -136,17 +131,26 @@ export class HomeComponent implements OnInit {
     const modalRef = this.modalService.open(ModalComponent);
     modalRef.componentInstance.customer = customer;
     modalRef.componentInstance.handleConfirmed = this.handleConfirmed;
+    modalRef.componentInstance.modalSuccess = this.modalSuccess;
   }
 
   handleConfirmed = async (items, customer: CustomerInterface) => {
     const array = [{ path: "id", label: "", flagged: customer.id }, ...items];
     //chiamata backend
     try {
-      await this.customerService.customerMarkAsEdited(array).subscribe();
-      this.updateCustomersList();
-      this.refreshCustomerSearchTable();
+      await this.customerService
+        .customerMarkAsEdited(array)
+        .subscribe(() => this.updateCustomersList(customer));
+      this.showModalSuccess(true);
+      this.refreshCustomerSearchTable(customer.id);
     } catch (ex) {
       //visualizzo errore nel salvataggio
     }
+    this.showModalSuccess(false);
+    this.refreshTable = false;
   };
+
+  showModalSuccess(bool) {
+    this.modalSuccess = bool;
+  }
 }

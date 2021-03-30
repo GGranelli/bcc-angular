@@ -1,4 +1,9 @@
-import { Component, OnInit, Input } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { InternalFormsSharedModule } from "@angular/forms/src/directives";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { CustomerInterface } from "../_interfaces/interfaces";

@@ -1,5 +1,33 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <ul class="navbar-nav">
+<div class="my-nav">
+  <div class="row align-items-end">
+    <div class="col-sm">
+      <div class="row" id="div-links">
+        <div class="col-sm">
+          <a class="nav-link" href="#">Ricerca Clienti</a>
+        </div>
+        <div class="col-sm">
+          <a class="nav-link" href="#">Report</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <div id="div-logo">
+        <img src="../../assets/img/logo.png" class="logo" />
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <div id="div-logout">
+        <button type="button" class="btn" (click)="logout()">
+          <img class="logout-img" src="../../assets/img/logout.png" />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <nav class="navbar navbar-expand-sm bg-nav">
+  <ul class="navbar-nav mr-auto">
     <li class="nav-item">
       <a class="nav-link" href="#">Ricerca Clienti</a>
     </li>
@@ -7,22 +35,11 @@
       <a class="nav-link" href="#">Report</a>
     </li>
   </ul>
-
-  <li class="nav-item dropdown">
-    <a
-      class="nav-link dropdown-toggle"
-      href="#"
-      id="navbardrop"
-      data-toggle="dropdown"
-    >
-      Dropdown link
-    </a>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" (click)="logout()">Logout</a>
-    </div>
-  </li>
-
-  <!-- <button type="button" class="btn btn-outline-danger" (click)="logout()">
-    Logout
-  </button> -->
-</nav>
+  <ul>
+    <li class="nav-item" id="nav-logout">
+      <button type="button" class="btn" (click)="logout()">
+        <img class="logout-img" src="../../assets/img/logout.png" />
+      </button>
+    </li>
+  </ul>
+</nav> -->

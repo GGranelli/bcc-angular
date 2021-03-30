@@ -1,0 +1,52 @@
+.my-nav {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.logout-img {
+  filter: invert(100%);
+  width: 22px;
+}
+
+.logout-img:hover {
+  filter: invert(43%) sepia(51%) saturate(1325%) hue-rotate(142deg)
+    brightness(118%) contrast(107%);
+}
+
+.bg-nav {
+  background-color: teal;
+  color: black;
+}
+
+.nav-link {
+  text-align: left;
+  color: white;
+}
+
+.nav-link:hover {
+  color: #00ced1;
+}
+
+#nav-logout {
+  text-align: right;
+}
+
+#div-logo {
+  height: 110px;
+  background-color: whitesmoke;
+  border-radius: 40px;
+  border: 12px solid teal;
+}
+
+.logo {
+  width: 180px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+#div-logout {
+  float: right;
+
+  align-content: flex-end;
+}

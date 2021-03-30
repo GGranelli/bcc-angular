@@ -1,0 +1,33 @@
+button {
+  border-radius: 5px;
+}
+
+.modal-header,
+.modal-footer {
+  background-color: whitesmoke;
+  color: black;
+}
+
+.modal-button {
+  width: 90px;
+  height: 42px;
+  margin-left: 4px;
+  margin-right: 4px;
+  color: white;
+}
+
+#conferma1-button {
+  background-color: #009980;
+}
+
+#conferma2-button {
+  background-color: #00ced1;
+}
+
+#close-button {
+  background-color: #006699;
+}
+
+#annulla-button {
+  background-color: #006699;
+}

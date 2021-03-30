@@ -1,8 +1,7 @@
 <div *ngIf="this.confermato">
   <h5>ATTENZIONE.</h5>
   <p>
-    L'anagrafica del cliente è stata confermata
-    <span *ngIf="this.success"> correttamente</span>.
+    L'anagrafica del cliente è stata confermata.
     <br />
     Il codice univoco assegnato è {{ this.customer.codice }}
   </p>
@@ -17,7 +16,7 @@
     <tr class="blank_row"></tr>
     <tr>
       <td>Data di nascita:</td>
-      <td>{{ customer.dataNascita }}</td>
+      <td>{{ birthDate }}</td>
     </tr>
     <tr class="blank_row"></tr>
     <tr *ngFor="let item of items">

@@ -1,1 +1,32 @@
+.divForm {
+  width: 100%;
+  align-content: left;
+}
 
+.formGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  text-align: left;
+}
+
+.calendar-div {
+  width: 60px;
+  border: transparent;
+}
+
+.calendar {
+  background-image: url("../../assets/img/calendar.png");
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#searchButton {
+  margin-top: 6px;
+  margin-left: 40px;
+  width: 90px;
+  height: 42px;
+  background-color: #7fcc99;
+  border-radius: 5px;
+}

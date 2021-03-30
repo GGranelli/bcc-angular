@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  SimpleChanges,
-  OnChanges,
-} from "@angular/core";
+import { Component, Input, OnChanges } from "@angular/core";
 import _ from "lodash";
 import { CustomerInterface } from "../_interfaces/interfaces";
 
@@ -23,17 +17,20 @@ export class TableModalComponent implements OnChanges {
   constructor() {}
 
   confermato: boolean = false;
-  changes: boolean;
+
+  birthDate: string = "";
+
+  ngOnInit() {
+    let data = this.customer.dataNascita.toString();
+    let charArray: string[] = data.split("-");
+    let reverseArray: string[] = charArray.reverse();
+    this.birthDate = reverseArray.join("/");
+  }
 
   ngOnChanges() {
-    console.log("COnfermato: " + this.customer.confermato);
     this.confermato = this.customer.confermato;
 
     if (this.modalSuccess) this.confermato = true;
-
-    // this.customer.controls["customer-modal"].valueChanges.subscribe((value) => {
-    //   this.customer = value;
-    // });
   }
 
   renderCell = (target, item) => {

@@ -1,13 +1,5 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  Output,
-  EventEmitter,
-  SimpleChanges,
-} from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import _ from "lodash";
-import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
 import { CustomerInterface } from "../_interfaces/interfaces";
 
 @Component({
@@ -18,6 +10,7 @@ import { CustomerInterface } from "../_interfaces/interfaces";
 export class CustomerTableComponent implements OnInit {
   @Input("customers-data") customers: CustomerInterface;
   @Output("customer-details") customerDetails = new EventEmitter();
+  @Input("customer-to-refresh") customerToRefresh: number;
   @Input() refresh: boolean;
 
   constructor() {}
@@ -29,26 +22,37 @@ export class CustomerTableComponent implements OnInit {
     { path: "dataNascita", label: "Data di nascita" },
     { path: "telefono", label: "Telefono" },
     { path: "email", label: "Email" },
-    // {
-    //   key: "dettagli",
-    //   content: (customer) => `<button>Details</button>`,
-    // },
   ];
 
   ngOnInit() {}
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.refresh) this.customers = this.customers;
-    console.log("ONCHANGES -> " + this.customers);
+  convertDigitIn(s) {
+    return s.split("").reverse().join("");
   }
 
   renderCell = (item, column) => {
-    // if (column.content) return column.content(item);
+    if (column.path === "dataNascita") {
+      let data = _.get(item, column.path);
+
+      let charArray: string[] = data.split("-");
+
+      let reverseArray: string[] = charArray.reverse();
+
+      data = reverseArray.join("/");
+
+      return data;
+    }
 
     return _.get(item, column.path);
   };
 
   onDetailsClick(customer) {
     this.customerDetails.emit(customer);
+  }
+
+  getButtonImage(bool) {
+    let image = "";
+    image += bool ? "assets/img/customer.png" : "assets/img/confirm.jpg";
+    return image;
   }
 }

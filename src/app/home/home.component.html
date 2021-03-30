@@ -1,30 +1,40 @@
-<div>
+<!-- <div id="div-logo">
+  <img src="../../assets/img/logo.png" class="logo" />
+</div> -->
+
+<div id="navbar">
   <app-navbar></app-navbar>
 </div>
+<div id="page">
+  <div id="search-form">
+    <app-customer-search
+      (formData)="getFormData($event)"
+      [branches-data]="branches"
+    ></app-customer-search>
+  </div>
 
-<div id="search-form">
-  <app-customer-search
-    (formData)="getFormData($event)"
-    [branches-data]="branches"
-  ></app-customer-search>
-</div>
-
-<div [hidden]="!showTable" id="customer-table">
-  <app-customer-table
-    [customers-data]="customersPerPage"
-    (customer-details)="getCustomerDetails($event)"
-    [refresh]="refreshTable"
-  ></app-customer-table>
-  <nav [hidden]="!showNavigation" id="pagination-nav">
-    <ul class="pagination">
-      <li
-        *ngFor="let page of pages"
-        [ngClass]="page === currentPage ? 'page-item active' : 'page-item'"
-      >
-        <a class="page-link" (click)="handlePageChange(page)">
-          {{ page }}
-        </a>
-      </li>
-    </ul>
-  </nav>
+  <div [hidden]="!showTable" id="customer-table">
+    <p id="notFound" *ngIf="customersPerPage < 1">
+      Nessuna corrispondenza trovata
+    </p>
+    <app-customer-table
+      [hidden]="customersPerPage < 1"
+      [customers-data]="customersPerPage"
+      (customer-details)="getCustomerDetails($event)"
+      [refresh]="refreshTable"
+      [customer-to-refresh]="customerToRefresh"
+    ></app-customer-table>
+    <nav [hidden]="!showNavigation" id="pagination-nav">
+      <ul class="pagination">
+        <li
+          *ngFor="let page of pages"
+          [ngClass]="page === currentPage ? 'page-item active' : 'page-item'"
+        >
+          <a class="page-link" (click)="handlePageChange(page)">
+            {{ page }}
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </div>

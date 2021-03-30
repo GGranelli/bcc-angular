@@ -1,51 +1,57 @@
-<div class="modal-header">
-  <h4 class="modal-title">{{ customer.nome }}</h4>
-</div>
-<div class="modal-body">
-  <app-table-modal
-    [customer-modal]="customer"
-    [items]="items"
-    [disable-checkboxes]="disableCheckboxes"
-    [get-toggle-checkboxes]="handleCheckbox"
-    [modalSuccess]="modalSuccess"
-  ></app-table-modal>
-</div>
-<div class="modal-footer">
-  <div *ngIf="confirmed && !success" style="float: left">
-    Sei sicuro di voler confermare l'anagrafica?
+<div id="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title">{{ customer.nome }}</h4>
   </div>
-  <div>
-    <button
-      *ngIf="!customer.confermato && !confirmed && !modalSuccess"
-      type="button"
-      class="btn btn-primary"
-      (click)="showConfirmationButton()"
-    >
-      Conferma
-    </button>
-    <button
-      *ngIf="confirmed"
-      type="button"
-      class="btn btn-danger"
-      (click)="confirmation()"
-    >
-      Conferma
-    </button>
-    <button
-      *ngIf="!confirmed"
-      type="button"
-      class="btn btn-secondary"
-      (click)="activeModal.close('Close click'); cleanItems()"
-    >
-      Close
-    </button>
-    <button
-      *ngIf="confirmed"
-      type="button"
-      class="btn btn-secondary"
-      (click)="changeConfirmedStatus(false); disableCheckboxes = false"
-    >
-      Annulla
-    </button>
+  <div class="modal-body">
+    <app-table-modal
+      [customer-modal]="customer"
+      [items]="items"
+      [disable-checkboxes]="disableCheckboxes"
+      [get-toggle-checkboxes]="handleCheckbox"
+      [modalSuccess]="modalSuccess"
+    ></app-table-modal>
+  </div>
+  <div class="modal-footer">
+    <div *ngIf="confirmed && !success" style="float: left">
+      Sei sicuro di voler confermare l'anagrafica?
+    </div>
+    <div>
+      <button
+        id="conferma1-button"
+        *ngIf="!customer.confermato && !confirmed && !modalSuccess"
+        type="button"
+        class="modal-button"
+        (click)="showConfirmationButton()"
+      >
+        Conferma
+      </button>
+      <button
+        id="conferma2-button"
+        *ngIf="confirmed"
+        type="button"
+        class="modal-button"
+        (click)="confirmation()"
+      >
+        Conferma
+      </button>
+      <button
+        id="close-button"
+        *ngIf="!confirmed"
+        type="button"
+        class="modal-button"
+        (click)="activeModal.close('Close click'); cleanItems()"
+      >
+        Close
+      </button>
+      <button
+        id="annulla-button"
+        *ngIf="confirmed"
+        type="button"
+        class="modal-button"
+        (click)="changeConfirmedStatus(false); disableCheckboxes = false"
+      >
+        Annulla
+      </button>
+    </div>
   </div>
 </div>

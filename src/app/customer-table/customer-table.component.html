@@ -16,7 +16,18 @@
       <td *ngFor="let column of columns">
         {{ this.renderCell(customer, column) }}
       </td>
-      <td><button (click)="onDetailsClick(customer)">Details</button></td>
+      <td id="detailsButton">
+        <button (click)="onDetailsClick(customer)">
+          <img
+            class="img-details"
+            src="{{
+              getButtonImage(
+                customer.confermato || customer.id === customerToRefresh
+              )
+            }}"
+          />
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>
