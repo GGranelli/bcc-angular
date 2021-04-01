@@ -64,11 +64,18 @@
           <input
             ngModel
             [disabled]="nag.invalid || nag.value === '' || branch.value === ''"
+            pattern="[A-z\s]{1,}"
+            value="{{ nag.value && name.value }}"
             #name="ngModel"
             class="form-control"
             name="name"
             id="name"
           />
+          <div *ngIf="name.invalid && name.touched && name.dirty">
+            <div class="alert-danger" *ngIf="name.errors.pattern">
+              Invalid characters.
+            </div>
+          </div>
         </div>
       </div>
 
@@ -78,22 +85,22 @@
           <br />
           <div class="input-group">
             <input
-              ngbDatepicker
-              #d="ngbDatepicker"
               [disabled]="name.value === ''"
               ngModel
+              type="date"
+              value="{{ name.value && birthDate.value }}"
               #birthDate="ngModel"
               class="form-control"
               name="birthDate"
               id="birthDate"
             />
-            <div class="input-group-append">
+            <!-- <div class="input-group-append">
               <button
                 class="btn btn-outline-secondary calendar"
                 (click)="d.toggle()"
                 type="button"
               ></button>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -103,7 +110,12 @@
           <br />
           <button
             id="searchButton"
-            [disabled]="nag.invalid || nag.value === '' || branch.value === ''"
+            [disabled]="
+              nag.invalid ||
+              nag.value === '' ||
+              branch.value === '' ||
+              name.invalid
+            "
           >
             Cerca
           </button>

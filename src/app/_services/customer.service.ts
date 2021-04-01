@@ -36,7 +36,11 @@ export class CustomerService {
 
     if (customerName !== "") {
       url += "&customerName=" + customerName;
-      if (birthDate !== "" && birthDate !== "undefined/undefined/undefined") {
+      if (
+        birthDate !== "" &&
+        birthDate !== "undefined" &&
+        birthDate.length === 10
+      ) {
         url += "&birthDate=" + birthDate;
       }
     }

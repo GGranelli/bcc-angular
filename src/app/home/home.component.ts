@@ -33,7 +33,6 @@ export class HomeComponent implements OnInit {
   branches: {};
   customers: Array<CustomerInterface>;
   customersPerPage: {};
-  lastFormEvent: any;
   refreshTable: boolean = false;
   //modal
   customerOnModal: CustomerInterface;
@@ -43,7 +42,7 @@ export class HomeComponent implements OnInit {
   totalCount: number;
   showTable: boolean = false;
   currentPage: number = 1;
-  pageSize: number = 8;
+  pageSize: number = 6;
   pages: number = 1;
   showNavigation: boolean = true;
 
@@ -79,26 +78,15 @@ export class HomeComponent implements OnInit {
   //====================================//
 
   getFormData = async (event) => {
-    this.lastFormEvent = event;
     let branch = event.branch.id;
     let nag = event.nag;
     let name = event.name;
-    let birthDate = "";
-    if (
-      event.birthDate !== null &&
-      event.birthDate !== "" &&
-      event.birthDate !== undefined
-    ) {
-      let year = event.birthDate.year;
-      let month = event.birthDate.month;
-      let day = event.birthDate.day;
-      if (month >= 1 && month <= 9) {
-        month = "0" + month;
-      }
-      if (day >= 1 && day <= 9) {
-        day = "0" + day;
-      }
-      birthDate = year + "/" + month + "/" + day;
+    let birthDate = event.birthDate;
+
+    if (birthDate !== "" && birthDate !== null && birthDate !== undefined) {
+      let charArray: string[] = birthDate.split("-");
+      let reverseArray: string[] = charArray.reverse();
+      birthDate = reverseArray.join("/");
     }
 
     await this.customerService

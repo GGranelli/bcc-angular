@@ -1,7 +1,14 @@
-.table-modal-label {
+.table-modal {
+  width: 100%;
+  height: 100%;
+  margin-left: 20px auto;
+  margin-right: 20px auto;
+}
+
+/* .table-modal-label {
   padding-right: 30px;
 }
 
 .table-modal-value {
   padding-right: 60px;
-}
+} */

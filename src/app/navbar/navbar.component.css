@@ -9,12 +9,12 @@
 }
 
 .logout-img:hover {
-  filter: invert(43%) sepia(51%) saturate(1325%) hue-rotate(142deg)
-    brightness(118%) contrast(107%);
+  filter: invert(14%) sepia(42%) saturate(7139%) hue-rotate(208deg)
+    brightness(89%) contrast(94%);
 }
 
 .bg-nav {
-  background-color: teal;
+  background-color: #4ca6a6;
   color: black;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .nav-link:hover {
-  color: #00ced1;
+  color: rgba(8, 70, 153);
 }
 
 #nav-logout {
@@ -35,7 +35,7 @@
   height: 110px;
   background-color: whitesmoke;
   border-radius: 40px;
-  border: 12px solid teal;
+  border: 12px solid #4ca6a6;
 }
 
 .logo {
